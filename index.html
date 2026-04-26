@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaladeco Font Generator — Pilih Font untuk Backdrop Dekorasi</title>
+  <meta name="description" content="Generator font untuk backdrop dekorasi dari Kaladeco. Pilih font favorit, ketik nama, dan download preview untuk dekorasi lamaran, prewedding, dan acara spesial.">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-mark">K</span>
+      <span class="nav-logo-text">Kala<span class="accent">deco</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#fitur">Fitur</a>
+      <a href="#contoh">Contoh Font</a>
+      <a href="https://kaladeco.vercel.app/" target="_blank" rel="noopener noreferrer">Website Utama</a>
+      <a href="generator.html" class="nav-cta">Buat Sekarang ✨</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="beranda">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="dot"></span> Font Generator untuk Dekorasi</div>
+      <h1>Pilih Font <span class="highlight">Sempurna</span> untuk Backdrop Anda</h1>
+      <p>Ketik nama, pilih dari 60+ font elegan, dan lihat langsung preview-nya. Cocok untuk dekorasi lamaran, prewedding, dan momen spesial lainnya.</p>
+      <div class="hero-buttons">
+        <a href="generator.html" class="btn btn-primary">Mulai Generate ✨</a>
+        <a href="#contoh" class="btn btn-secondary">Lihat Contoh Font</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="fitur">
+    <div class="section-label">— Fitur</div>
+    <h2 class="section-title">Kenapa Pakai Font Generator Kami?</h2>
+    <p class="section-desc">Mudah, cepat, dan gratis. Lihat langsung bagaimana nama akan terlihat di backdrop dekorasi Anda.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔤</div>
+        <h3>60+ Font Pilihan</h3>
+        <p>Koleksi font yang dikurasi khusus untuk dekorasi — dari script elegan hingga sans-serif modern.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👁️</div>
+        <h3>Preview Real-Time</h3>
+        <p>Ketik nama dan lihat langsung hasilnya. Ganti font seketika tanpa menunggu loading.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📸</div>
+        <h3>Download PNG</h3>
+        <p>Download hasil preview sebagai gambar PNG — dengan background putih atau transparan.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Bisa diakses dari mana saja, kapan saja, langsung dari handphone Anda.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🆓</div>
+        <h3>100% Gratis</h3>
+        <p>Tidak ada biaya, tidak perlu registrasi. Langsung pakai dan download.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>4 Kategori Font</h3>
+        <p>Script, Serif, Sans Serif, dan Dekoratif — semua tersedia dan mudah ditelusuri.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section class="section" id="contoh">
+    <div class="section-label">— Contoh Font</div>
+    <h2 class="section-title">Preview Beberapa Font Populer</h2>
+    <p class="section-desc">Berikut contoh tampilan nama dengan font-font terpopuler untuk dekorasi backdrop.</p>
+    <div class="showcase">
+      <div class="showcase-grid" id="showcase-grid"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Siap Pilih Font untuk<br><span style="background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Backdrop Anda?</span></h2>
+    <p>Mulai sekarang — gratis, cepat, dan langsung bisa download hasilnya.</p>
+    <a href="generator.html" class="btn btn-primary">Buka Font Generator ✨</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 <a href="https://kaladeco.vercel.app/" target="_blank">Kaladeco</a> — Font Generator untuk Dekorasi Backdrop</p>
+    <p style="margin-top:0.3rem;">Mendekor dengan hati, semoga sampai ke hati ♥</p>
+  </footer>
+
+  <script src="js/fonts.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Load showcase fonts
+    const showcaseFonts = [
+      { name: 'Great Vibes', family: 'Great Vibes', cat: 'Script' },
+      { name: 'Playfair Display', family: 'Playfair Display', cat: 'Serif' },
+      { name: 'Cinzel', family: 'Cinzel', cat: 'Serif' },
+      { name: 'Dancing Script', family: 'Dancing Script', cat: 'Script' },
+      { name: 'Montserrat', family: 'Montserrat', cat: 'Sans Serif' },
+      { name: 'Abril Fatface', family: 'Abril Fatface', cat: 'Dekoratif' },
+    ];
+    showcaseFonts.forEach(f => loadSingleFont(f.family));
+
+    const grid = document.getElementById('showcase-grid');
+    showcaseFonts.forEach(f => {
+      const card = document.createElement('div');
+      card.className = 'showcase-card';
+      card.innerHTML = `
+        <div class="showcase-preview" style="font-family:'${f.family}',serif">Anisa & Rizki</div>
+        <div class="showcase-info">
+          <div class="font-name">${f.name}</div>
+          <div class="font-cat">${f.cat}</div>
+        </div>
+      `;
+      card.onclick = () => window.location.href = 'generator.html';
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
