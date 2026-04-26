@@ -35,43 +35,7 @@
       </div>
 
       <div class="gen-layout">
-        <!-- Left: Controls -->
-        <div class="gen-controls">
-          <!-- Name Input -->
-          <div class="control-group">
-            <label class="control-label" for="name-input">Nama / Teks</label>
-            <input type="text" id="name-input" class="name-input" placeholder="Ketik nama di sini..." maxlength="60" autocomplete="off">
-          </div>
-
-          <!-- Size -->
-          <div class="control-group">
-            <label class="control-label" for="size-slider">Ukuran Font</label>
-            <input type="range" id="size-slider" class="size-slider" min="24" max="150" value="72">
-            <div id="size-val" class="size-val">72px</div>
-          </div>
-
-          <!-- Category Tabs -->
-          <div class="control-group">
-            <label class="control-label">Kategori</label>
-            <div class="cat-tabs" id="cat-tabs"></div>
-          </div>
-
-          <!-- Font Search -->
-          <div class="control-group">
-            <label class="control-label" for="font-search">Cari Font</label>
-            <div class="search-wrap">
-              <input type="text" id="font-search" class="font-search" placeholder="Cari nama font..." autocomplete="off">
-            </div>
-          </div>
-
-          <!-- Font List -->
-          <div class="control-group">
-            <label class="control-label">Pilih Font</label>
-            <div class="font-list" id="font-list"></div>
-          </div>
-        </div>
-
-        <!-- Right: Preview -->
+        <!-- Top: Preview (sticky) -->
         <div class="gen-preview">
           <div class="preview-toolbar">
             <div id="font-info" class="font-info">Font: <strong>Great Vibes</strong></div>
@@ -80,11 +44,129 @@
             <div id="preview-text">Nama Anda</div>
           </div>
           <div class="download-bar">
-            <button class="btn btn-primary" id="btn-download-png">📸 Download PNG</button>
-            <button class="btn btn-secondary" id="btn-download-transparent">🔲 PNG Transparan</button>
+            <button class="btn btn-primary" id="btn-download-template">📋 Template Spesifikasi</button>
+            <div class="png-dropdown">
+              <button class="btn btn-secondary png-trigger" id="btn-png-trigger" type="button" aria-haspopup="menu" aria-expanded="false">
+                📸 PNG <span class="png-chevron">▾</span>
+              </button>
+              <div class="png-menu" id="png-menu" hidden role="menu">
+                <button class="png-menu-item" id="btn-download-png" role="menuitem">
+                  <span class="png-menu-icon">📸</span>
+                  <span class="png-menu-text">
+                    <strong>PNG Polos</strong>
+                    <small>Background putih</small>
+                  </span>
+                </button>
+                <button class="png-menu-item" id="btn-download-transparent" role="menuitem">
+                  <span class="png-menu-icon">🔲</span>
+                  <span class="png-menu-text">
+                    <strong>PNG Transparan</strong>
+                    <small>Tanpa background</small>
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Bottom: Controls -->
+        <div class="gen-controls">
+          <!-- Acara (untuk template) -->
+          <div class="control-group" id="event-group">
+            <label class="control-label" for="event-input">Acara <span class="label-hint">(opsional)</span></label>
+            <input type="text" id="event-input" class="name-input" placeholder="Khitanan, Lamaran, Wedding..." maxlength="40" autocomplete="off">
+          </div>
+
+          <!-- Name Input -->
+          <div class="control-group" id="name-group">
+            <label class="control-label" for="name-input">Nama / Teks</label>
+            <textarea id="name-input" class="name-input name-textarea" placeholder="Ketik nama di sini... (Enter untuk baris baru)" maxlength="120" rows="2" autocomplete="off"></textarea>
+          </div>
+
+          <!-- Font Picker (popup modal) -->
+          <div class="control-group" id="font-list-group">
+            <label class="control-label">Pilih Font</label>
+            <button class="font-picker-trigger" id="font-picker-trigger" type="button" aria-haspopup="dialog" aria-expanded="false">
+              <span class="fp-current">
+                <span class="fp-name" id="fp-current-name">Great Vibes</span>
+                <span class="fp-preview" id="fp-current-preview" style="font-family:'Great Vibes',cursive">Kaladeco</span>
+              </span>
+              <span class="fp-chevron">▾</span>
+            </button>
+          </div>
+
+          <!-- Size -->
+          <div class="control-group" id="size-group">
+            <label class="control-label" for="size-slider">Ukuran Font</label>
+            <input type="range" id="size-slider" class="size-slider" min="24" max="150" value="72">
+            <div id="size-val" class="size-val">72px</div>
+          </div>
+
+          <!-- Weight (ketebalan) -->
+          <div class="control-group" id="weight-group">
+            <label class="control-label">Ketebalan</label>
+            <div class="weight-tabs" id="weight-tabs"></div>
+            <div id="weight-hint" class="weight-hint" hidden>Font ini hanya tersedia dalam satu ketebalan</div>
+          </div>
+
+          <!-- Category sheet (modal) -->
+          <div class="cat-sheet" id="cat-sheet" hidden>
+            <div class="cat-sheet-backdrop" data-close></div>
+            <div class="cat-sheet-panel" role="dialog" aria-label="Pilih kategori">
+              <div class="cat-sheet-header">
+                <h3>Pilih Kategori</h3>
+                <button class="cat-sheet-close" data-close aria-label="Tutup">✕</button>
+              </div>
+              <div class="cat-sheet-tabs" id="cat-sheet-tabs"></div>
+            </div>
+          </div>
+
+          <!-- Font sheet (modal) -->
+          <div class="cat-sheet font-sheet" id="font-sheet" hidden>
+            <div class="cat-sheet-backdrop" data-close-font></div>
+            <div class="cat-sheet-panel font-sheet-panel" role="dialog" aria-label="Pilih font">
+              <div class="cat-sheet-header">
+                <h3>Pilih Font</h3>
+                <button class="cat-sheet-close" data-close-font aria-label="Tutup">✕</button>
+              </div>
+              <div class="font-picker-toolbar">
+                <div class="search-wrap">
+                  <input type="text" id="font-search" class="font-search" placeholder="Cari nama font..." autocomplete="off">
+                </div>
+                <button class="cat-filter-btn" id="cat-filter-btn" type="button" aria-haspopup="dialog">
+                  <span class="cat-filter-icon">🔽</span>
+                  <span>Filter: <strong id="cat-filter-current">Semua</strong></span>
+                </button>
+              </div>
+              <div id="font-list-count" class="font-list-count"></div>
+              <div class="font-list" id="font-list"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Tips & info section -->
+      <section class="gen-info">
+        <div class="gen-info-grid">
+          <div class="gen-info-card">
+            <div class="gen-info-icon">💡</div>
+            <h3>Tips Memilih Font Backdrop</h3>
+            <p>Untuk acara formal seperti lamaran dan akad, pilih font <strong>Script</strong> atau <strong>Serif</strong> yang elegan. Untuk khitanan dan acara keluarga, font <strong>Sans Serif</strong> atau <strong>Handwriting</strong> memberi kesan hangat dan ramah.</p>
+          </div>
+          <div class="gen-info-card">
+            <div class="gen-info-icon">🎨</div>
+            <h3>Cara Pakai Hasil Download</h3>
+            <p>Gunakan <strong>Template Spesifikasi</strong> sebagai referensi pesanan ke vendor dekorasi. <strong>PNG Polos</strong> cocok untuk preview cepat, sedangkan <strong>PNG Transparan</strong> bisa langsung dipakai untuk desain digital atau cetak vinyl.</p>
+          </div>
+          <div class="gen-info-card">
+            <div class="gen-info-icon">✨</div>
+            <h3>Butuh Dekorasi Backdrop Lengkap?</h3>
+            <p>Sudah menemukan font yang cocok? Tim Kaladeco siap merealisasikan backdrop impian Anda untuk lamaran, prewedding, akad, dan acara spesial lainnya di Purwokerto dan sekitarnya.</p>
+            <a href="https://wa.me/6285283910033?text=Halo%20Kaladeco%2C%20saya%20tertarik%20konsultasi%20dekorasi%20backdrop" target="_blank" rel="noopener noreferrer" class="btn btn-primary gen-info-cta">💬 Konsultasi Sekarang</a>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 

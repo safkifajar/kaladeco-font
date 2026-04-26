@@ -6,7 +6,7 @@ Live: https://kaladeco-font.vercel.app
 
 ## Fitur
 
-- 65+ Google Fonts terkurasi (Script, Serif, Sans Serif, Dekoratif)
+- 90+ Google Fonts terkurasi (Script, Serif, Sans Serif, Handwriting, Dekoratif)
 - Preview real-time dengan kontrol ukuran (24–150px)
 - Pencarian font + filter kategori
 - Download PNG (background putih atau transparan, 2x DPI)

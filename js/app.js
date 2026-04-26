@@ -11,10 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
       const spans = navToggle.querySelectorAll('span');
-      if (navLinks.classList.contains('open')) {
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
+    };
+    navToggle.addEventListener('click', () => {
+      const willOpen = !navLinks.classList.contains('open');
+      navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open', willOpen);
+      document.body.style.overflow = willOpen ? 'hidden' : '';
+      const spans = navToggle.querySelectorAll('span');
+      if (willOpen) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
@@ -25,13 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        const spans = navToggle.querySelectorAll('span');
-        spans[0].style.transform = '';
-        spans[1].style.opacity = '';
-        spans[2].style.transform = '';
-      });
+      a.addEventListener('click', closeMenu);
     });
   }
 
